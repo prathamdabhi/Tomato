@@ -6,6 +6,8 @@ import connectDB from './config/db.js';
 import foodRouter from './routers/food.route.js';
 import userRouter from './routers/user.route.js';
 import cartRouter from './routers/cart.route.js';
+import orderRouter from './routers/order.route.js';
+
 const app = express();
 
 const port = process.env.PORT
@@ -21,6 +23,7 @@ connectDB()
 app.use('/api/v1/food',foodRouter);
 app.use('/api/v1/user',userRouter);
 app.use('/api/v1/cart',cartRouter);
+app.use('/api/v1/order',orderRouter)
 app.use('/images',express.static('uploads'));
 
 
