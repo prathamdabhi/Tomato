@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 20px;
 }
+
 .explore-menu h1{
     color: #262626;
     font-weight: 500;
@@ -21,6 +22,7 @@
     margin: 20px 0px;
     overflow-x: scroll;
 }
+
 .explore-menu-list::-webkit-scrollbar{
     display: none;
 }

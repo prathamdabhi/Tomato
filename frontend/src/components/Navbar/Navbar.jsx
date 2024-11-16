@@ -1,21 +1,19 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './Navbar.css';
 import { assets } from '../../assets/frontend_assets/assets';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({ setShowlogin }) => {
     const [menu, setMenu] = useState('home');
     const [showMenu, setShowMenu] = useState(false);
     const {getCartTotal, token,setToken } = useContext(StoreContext);
-
+    const navigate = useNavigate();
     const logout = () => {
         setToken(localStorage.removeItem('token'));
     }
 
-    useEffect(()=>{
-        console.log(token)
-    },[])
+
 
     return (
         <div className='navbar'>
@@ -27,7 +25,7 @@ const Navbar = ({ setShowlogin }) => {
                 <a href='#footer' onClick={() => setMenu('contact-us')} className={menu === 'contact-us' ? 'active' : ''}>Contact-Us</a>
             </ul>
             <div className="navbar-right">
-                <img src={assets.search_icon} alt="" />
+                
                 <div className='navbar-search-icon'>
                     <Link to='/cart'><img src={assets.basket_icon} alt="" /></Link>
                     <div className={getCartTotal()===0 ? "" : "dot"}></div>
@@ -42,7 +40,7 @@ const Navbar = ({ setShowlogin }) => {
                                 </li>
                                 
                                 <hr />
-                                <li>
+                                <li onClick={()=>navigate('/myorders')}>
                                     <img src={assets.logout_icon} alt="" />
                                     <p onClick={logout}>Logout</p>
                                 </li>
@@ -71,7 +69,7 @@ const Navbar = ({ setShowlogin }) => {
                         token ?  (<div className="navbar-profile">
                             <img src={assets.profile_icon} alt="" />
                             <ul className='nav-profile-dropdown'>
-                                <li>
+                                <li onClick={()=>navigate('/myorders')}>
                                     <img src={assets.bag_icon} alt="" />
                                 </li>
                                 <p>Orders</p>

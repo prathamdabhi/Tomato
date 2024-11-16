@@ -57,7 +57,35 @@ const placeOrder = async (req,res) => {
     }
 }
 
+const verifyOrder = async (req,res) => {
+    try {
+        const { orderId,success } = req.body;
+        if(success === "true"){
+            await Order.findByIdAndUpdate(orderId,{payment:true})
+            return res.status(201).json({success:true,message:"Payment Successfull"});
+        }else{
+            await Order.findByIdAndDelete(orderId);
+            return res.status(401).json({success:false,message:"Payment Failed"});
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(401).json({success:false,message:error.message}); 
+    }
+}
+
+//api for users orders
+const usersOrders = async (req,res) => {
+    try {
+        const orders = await Order.find({userId:req.body.userId});
+        return res.status(201).json({success:true,data:orders});
+    } catch (error) {
+        console.log(error)
+        res.status(401).json({success:false,message:error.message});
+    }
+}
+
 export {
 placeOrder,
-
+verifyOrder,
+usersOrders
 }

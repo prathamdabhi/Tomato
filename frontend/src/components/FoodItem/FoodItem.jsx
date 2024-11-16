@@ -7,7 +7,7 @@ const FoodItem = ({id,name,price,description,image}) => {
   const [itemCount, setItemCount] = useState(0);
   const { cartItems, addToCart, removeFromCart,uri} = useContext(StoreContext);
   return (
-    <div className='food-item'>
+    <div className='food-item slide-fwd-center'>
         <div className='food-item-image-container'>
             <img className='food-item-image' src={ `${uri}/images/${image}` } alt="" />
             {
