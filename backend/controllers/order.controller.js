@@ -10,7 +10,7 @@ import 'dotenv/config';
 
 const placeOrder = async (req,res) => {
   
-    const frontend_uri = 'http://localhost:5173'
+    const frontend_uri = 'https://tomato-front-end-cdu4.onrender.com'
     console.log(process.env.STRIPE_SECRET_KEY)
     try {
         const newOrder = new Order({userId:req.body.userId,
