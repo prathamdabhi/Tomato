@@ -10,7 +10,7 @@ import { useState } from 'react'
 import Loginpopup from './components/LoginPopup/Loginpopup'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Verify from './pages/Verify/Verify'
+import Verification from './pages/Verification/Verification'
 import MyOrders from './pages/MyOrders/MyOrders'
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/order' element={<PlaceOrder />} />
-          <Route path='/verify' element={<Verify />} />
+          <Route path='/verify' element={<Verification />} />
           <Route path='/myorders' element={<MyOrders />} />
         </Routes>
       </div>
