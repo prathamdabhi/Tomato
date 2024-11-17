@@ -4,7 +4,7 @@ export const AppContext = createContext();
 
 const AppProvider = (props) => {
 
-    const url = 'http://localhost:4000'
+    const url = 'https://tomato-backend-mdla.onrender.com'
     const value={
         url
     }

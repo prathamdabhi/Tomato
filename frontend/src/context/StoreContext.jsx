@@ -56,7 +56,7 @@ const StoreProvider = (props) => {
 
 
 
-  const uri = 'http://localhost:4000'
+  const uri = 'https://tomato-backend-mdla.onrender.com'
   const [token, setToken] = useState(localStorage.getItem('token')?localStorage.getItem('token'): ' ');
 
 
