@@ -193,6 +193,12 @@
     .navbar-menu {
         display: none;
     }
+    .navbar-profile img{
+        display: none;
+    }
+    .mobile-sign-in.none{
+        display: none;
+    }
 }
 
 @media (max-width: 500px) {

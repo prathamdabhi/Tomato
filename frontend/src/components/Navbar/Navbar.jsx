@@ -34,20 +34,20 @@ const Navbar = ({ setShowlogin }) => {
                         token ?  (<div className="navbar-profile">
                             <img src={assets.profile_icon} alt="" />
                             <ul className='nav-profile-dropdown'>
-                                <li>
+                                <li onClick={()=>navigate('/myorders')}>
                                     <img src={assets.bag_icon} alt="" />
                                     <p>Orders</p>
                                 </li>
                                 
                                 <hr />
-                                <li onClick={()=>navigate('/myorders')}>
+                                <li >
                                     <img src={assets.logout_icon} alt="" />
                                     <p onClick={logout}>Logout</p>
                                 </li>
                                
                             </ul>
                         </div>) : ( 
-                            <button onClick={() => setShowlogin(true)} className='mobile-sign-in'>Sign In</button>
+                            <button onClick={() => setShowlogin(true)} className='mobile-sign-in none'>Sign In</button>
                         )
                     }
                 <img onClick={() => setShowMenu(true)} className='menu-icon' src={assets.menu_icon} alt="" />
@@ -64,25 +64,22 @@ const Navbar = ({ setShowlogin }) => {
                         <a href='#explore-menu' onClick={() => setMenu('menu')} className={menu === 'menu' ? 'active' : ''}>Menu</a>
                         <a href='#app-download' onClick={() => setMenu('mobile-all')} className={menu === 'mobile-all' ? 'active' : ''}>Mobile-App</a>
                         <a href='#footer' onClick={() => setMenu('contact-us')} className={menu === 'contact-us' ? 'active' : ''}>Contact-Us</a>
-                    </ul>
-                    {
+                        {
                         token ?  (<div className="navbar-profile">
-                            <img src={assets.profile_icon} alt="" />
-                            <ul className='nav-profile-dropdown'>
-                                <li onClick={()=>navigate('/myorders')}>
-                                    <img src={assets.bag_icon} alt="" />
+                            <li style={{listStyle: 'none',marginBottom: '10px'}} onClick={()=>navigate('/myorders')}>
+                                    <p>Orders</p>
                                 </li>
-                                <p>Orders</p>
-                                <hr />
-                                <li>
-                                    <img src={assets.logout_icon} alt="" />
+                                <li style={{listStyle: 'none'}} onClick={logout}>
+                                    <p>Logout</p>
                                 </li>
-                                <p>Logout</p>
-                            </ul>
+                           
                         </div>) : ( 
                             <button onClick={() => setShowlogin(true)} className='mobile-sign-in'>Sign In</button>
                         )
                     }
+                               
+                    </ul>
+                    
                    
                 </div>
             )}

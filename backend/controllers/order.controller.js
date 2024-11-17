@@ -84,8 +84,32 @@ const usersOrders = async (req,res) => {
     }
 }
 
+// List All the orders
+const listOrders = async (req,res) => {
+    try {
+        const orders = await Order.find({});
+        return res.status(201).json({success:true,data:orders})
+    } catch (error) {
+        console.log(error)
+        res.status(401).json({success:false,message:error.message});
+    }
+}
+
+const changeOrderStatus = async (req,res) => {
+    try {
+        const { orderId,status} = req.body;
+        const order = await Order.findByIdAndUpdate(orderId,{status});
+        return res.status(201).json({success:true,message:"Status Updated"});
+    } catch (error) {
+        console.log(error)
+        res.status(401).json({success:false,message:error.message});
+    }
+}
+
 export {
 placeOrder,
 verifyOrder,
-usersOrders
+usersOrders,
+listOrders,
+changeOrderStatus
 }
