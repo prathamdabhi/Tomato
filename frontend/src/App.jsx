@@ -10,7 +10,7 @@ import { useState } from 'react'
 import Loginpopup from './components/LoginPopup/Loginpopup'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Verify from './pages/verify/verify'
+import Verify  from './pages/Verify/Verify'
 import MyOrders from './pages/MyOrders/MyOrders'
 
 function App() {
