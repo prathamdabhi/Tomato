@@ -21,28 +21,44 @@ const PlaceOrder = () => {
 
   const placeOrder = async (e) => {
     e.preventDefault();
-    let orderItems = [];
-    food_list.map((item)=>{
-      if(cartItems[item._id] > 0){
-        let itemInfo = item;
-        itemInfo['quantity'] = cartItems[item._id];
-        orderItems.push(itemInfo);
-      }
-    })
 
+    // Prepare order items from cart
+    let orderItems = [];
+    food_list.map((item) => {
+        if (cartItems[item._id] > 0) {
+            let itemInfo = item;
+            itemInfo['quantity'] = cartItems[item._id];
+            orderItems.push(itemInfo);
+        }
+    });
+
+    // Prepare order data to send to the backend
     let orderData = {
-      address:data,
-      items:orderItems,
-      amount:getCartTotal() + 20,
+        address: data,
+        items: orderItems,
+        amount: getCartTotal() + 20,  // Including delivery charges
+        frontendUrl: window.location.origin,  // Dynamically get the frontend URL
+    };
+    const {address,items,amount,frontendUrl} = orderData;
+
+    try {
+        // Make the API request to the backend to place the order
+        let response = await axios.post(`${uri}/api/v1/order/place`, { address, items, amount, frontendUrl }, {
+            headers: { token },  // Pass the token for authentication
+        });
+
+        // Handle the response from the backend
+        if (response.data.success) {
+            const { session_url } = response.data;
+            window.location.replace(session_url);  // Redirect to the Stripe checkout session
+        } else {
+            alert(response.data.message || 'ERROR');
+        }
+    } catch (error) {
+        console.error('Error during order placement:', error);
+        alert(error.message);
     }
-    let response = await axios.post(`${uri}/api/v1/order/place`,orderData,{headers:{token}}); 
-    if(response.data.success){
-      const { session_url } = response.data;
-      window.location.replace(session_url);
-    }else{
-      alert(response.data.message || 'ERROR')
-    }
-  }
+};
 
   const onChangeHandler = (e) => {
     const name = e.target.name;
